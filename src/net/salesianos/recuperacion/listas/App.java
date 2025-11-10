@@ -1,19 +1,14 @@
-package net.salesianos.recuperacion.listas; 
+package net.salesianos.recuperacion.listas;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-import net.salesianos.recuperacion.listas.FormTarea;
-import net.salesianos.recuperacion.listas.GestorArchivos;
-import net.salesianos.recuperacion.listas.Tarea;
-
-
 
 public class App {
 
     private static Queue<Tarea> listaTareas = new LinkedList<>();
 
     public static void main(String[] args) {
-
         // Cargar tareas desde archivo
         listaTareas = GestorArchivos.cargar();
 
@@ -21,9 +16,9 @@ public class App {
         int opcion = 0;
 
         do {
-            System.out.println("=== GESTOR DE TAREAS ===");
+            System.out.println("\n=== GESTOR DE TAREAS ===");
             System.out.println("1. Listar tareas");
-            System.out.println("2. Agregar tarea (GUI)");
+            System.out.println("2. Agregar tarea");
             System.out.println("3. Eliminar tarea");
             System.out.println("4. Salir");
             System.out.print("Elige opción: ");
@@ -41,7 +36,7 @@ public class App {
                     break;
 
                 case 2:
-                    new FormTarea(listaTareas);
+                    agregarTarea(sc);
                     break;
 
                 case 3:
@@ -49,7 +44,6 @@ public class App {
                     break;
 
                 case 4:
-                    
                     GestorArchivos.guardar(listaTareas);
                     System.out.println("Saliendo del programa...");
                     break;
@@ -62,6 +56,8 @@ public class App {
 
         sc.close();
     }
+
+    // ====== MÉTODOS AUXILIARES ======
 
     private static void listarTareas() {
         if (listaTareas.isEmpty()) {
@@ -76,15 +72,24 @@ public class App {
         }
     }
 
+    private static void agregarTarea(Scanner sc) {
+        System.out.print("Título de la tarea: ");
+        String titulo = sc.nextLine();
+
+        System.out.print("Descripción: ");
+        String descripcion = sc.nextLine();
+
+        listaTareas.add(new Tarea(titulo, descripcion, descripcion, null));
+        System.out.println("Tarea agregada correctamente.");
+    }
+
     private static void eliminarTarea() {
         if (listaTareas.isEmpty()) {
             System.out.println("No hay tareas para eliminar.");
             return;
         }
 
-        Tarea eliminada = listaTareas.poll(); 
-        System.out.println("Se ha eliminado: " + eliminada.getTitulo());
+        Tarea eliminada = listaTareas.poll();
+        System.out.println(" Se ha eliminado la tarea: " + eliminada.getTitulo());
     }
-}
-
 }
