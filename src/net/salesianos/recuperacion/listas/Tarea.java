@@ -1,4 +1,4 @@
-package src.net.salesianos.recuperacion.listas;
+package net.salesianos.recuperacion.listas;
 import java.time.LocalDate;
 
 public class Tarea {
