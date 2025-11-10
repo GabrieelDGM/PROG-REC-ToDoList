@@ -11,7 +11,7 @@ import java.util.Queue;
 
 public class GestorArchivos {
 
-    private static final String RUTA_ARCHIVO = "tareas.dat";
+    private static final String RUTA_ARCHIVO = "tareas.txt";
 
     // Guardar tareas en archivo
     public static void guardar(Queue<Tarea> lista) {
